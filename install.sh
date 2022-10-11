@@ -30,12 +30,12 @@ cd /home/pi/
 #descargo los archivos
 sudo git clone https://github.com/Ansel-dal/DCMLocker
 
-#doy permisos para crear dcmdigitalsignage.service 
+#doy permisos para crear dcmlocker.service 
 sudo chmod ugo+rwx /etc/systemd/system/
 
-#creo dcmdigitalsignage.service 
+#creo dcmlocker.service 
 echo -e "[Unit]
-Description=dcmdigitalsignage 
+Description=dcmlocker 
 [Service]
  WorkingDirectory=/home/pi/DCMLocker
  ExecStart=/opt/dotnet/dotnet /home/pi/DCMLocker/DCMLocker.Server.dll
@@ -46,10 +46,10 @@ Description=dcmdigitalsignage
 [Install]
  WantedBy=multi-user.target
 
-" >> /etc/systemd/system/dcmdigitalsignage.service
+" >> /etc/systemd/system/dcmlocker.service
 
 #creo servicio
-sudo systemctl enable dcmdigitalsignage.service
+sudo systemctl enable dcmlocker.service
 
 #inico servicio
-sudo systemctl start dcmdigitalsignage.service
+sudo systemctl start dcmlocker.service
