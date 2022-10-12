@@ -5,7 +5,7 @@ sudo apt-get upgrade
 sudo apt install nginx -y
 sudo service nginx start
 
-
+#configuraciones de red
 echo -e "
 
 
@@ -18,12 +18,10 @@ static domain_name_servers=192.168.2.1
 
 interface wlan0
 metric 200
-static ip_address=192.168.88.246
-static routers=192.168.88.1
-static domain_name_servers=192.168.88.1
 
 " >> /etc/dhcpcd.conf
 
+#instalar net 5
 sudo wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet5pi/master/install.sh | sudo bash
 
 
@@ -57,8 +55,7 @@ sudo systemctl enable dcmlocker.service
 #inico servicio
 sudo systemctl start dcmlocker.service
 
-#archivo inicio chromium
-
+#inicio chromium
 echo -e "
 [Desktop Entry]
 Name=KioskMode #name
@@ -67,9 +64,18 @@ Exec=chromium-browser --start-fullscreen --disable-pinch  --kiosk --app=http://l
 
 " >> /etc/xdg/autostart/display.desktop
 
+#no apagar display
 export XAUTHORITY=~/.Xauthority
 xset s noblank
 xset s off
 xset -dpms
+
+#no mostrar cursor
+sudo apt install unclutter
+
+echo -e "
+@unclutter -idle 0
+
+" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 sudo reboot
