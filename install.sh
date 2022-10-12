@@ -77,4 +77,7 @@ echo -e "
 
 " >> /etc/xdg/lxsession/LXDE-pi/autostart
 
+#instalamos el chromium
+sudo apt-get install chromium-browser
+
 sudo reboot
