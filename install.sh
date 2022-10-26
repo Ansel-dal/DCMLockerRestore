@@ -3,6 +3,7 @@
 sudo apt-get update
 sudo apt install nginx -y
 sudo service nginx start
+sudo apt install rpi-eeprom rpi-eeprom-images -y
 
 #configuraciones de red
 echo -e "
