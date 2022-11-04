@@ -102,6 +102,8 @@ if [ "$_IP" ]; then
 fi
 sudo bash /var/www/dcmlocker/script.sh
 exit 0
-" >> /etc/dhcpcd.conf
+" >> /etc/rc.local
+#le doy permisos
+sudo chmod ugo+rwx /etc/rc.local
 
 sudo reboot
