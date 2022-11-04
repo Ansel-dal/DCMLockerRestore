@@ -59,7 +59,7 @@ sudo systemctl start dcmlocker.service
 echo -e "
 [Desktop Entry]
 Name=KioskMode #name
-Exec=chromium-browser --start-fullscreen --disable-pinch  --kiosk --app=http://localhost:5022/
+Exec=chromium --start-fullscreen --disable-pinch  --kiosk --app=http://localhost:5022/
 
 
 " >> /etc/xdg/autostart/display.desktop
@@ -78,7 +78,22 @@ echo -e "
 
 " >> /etc/xdg/lxsession/LXDE-pi/autostart
 
-#instalamos el chromium
-sudo apt-get install chromium-browser
+#ponemos script al inicio
+#elimino /etc/rc.local
+sudo rm -r /etc/rc.local
+
+#lo creo nuevamente con el script puesto
+echo -e "
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+sudo bash /var/www/dcmlocker/script.sh
+
+exit 0
+" >> /etc/dhcpcd.conf
 
 sudo reboot
