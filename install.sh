@@ -55,34 +55,30 @@ sudo systemctl enable dcmlocker.service
 #inico servicio
 sudo systemctl start dcmlocker.service
 
-#inicio chromium
-echo -e "
-[Desktop Entry]
+
+############ inicio en chromium ############
+#creo archivo que da el arranque
+sudo touch display.desktop
+#doy permisos para modificar desde el script
+sudo chmod ugo+rwx display.desktop
+#modifico archivo y agrego instrucciones
+echo "[Desktop Entry]
 Name=KioskMode #name
 Exec=chromium --start-fullscreen --force-device-scale-factor=0.7 --disable-pinch  --kiosk --app=http://localhost:5022/
-" >> /etc/xdg/autostart/display.desktop
+" > /etc/xdg/autostart/display.desktop
 
-#no apagar display
-export XAUTHORITY=~/.Xauthority
-xset s noblank
-xset s off
-xset -dpms
 
-#no mostrar cursor
-sudo apt install unclutter
-
-echo -e "
-@unclutter -idle 0
-
-" >> /etc/xdg/lxsession/LXDE-pi/autostart
-
-#ponemos script al inicio
+############ ponemos script al inicio ############
 #elimino /etc/rc.local
 sudo rm -r /etc/rc.local
 
+
 #lo creo nuevamente con el script puesto
-echo -e "
-#!/bin/sh -e
+sudo touch /etc/rc.local
+#doy permisos para modificar desde el script
+sudo chmod ugo+rwx /etc/rc.local
+#edito y agrego instrucciones
+echo -e "#!/bin/sh -e
 #
 # rc.local
 #
@@ -102,8 +98,5 @@ if [ "$_IP" ]; then
 fi
 sudo bash /var/www/dcmlocker/script.sh
 exit 0
-" >> /etc/rc.local
-#le doy permisos
-sudo chmod ugo+rwx /etc/rc.local
-
+" > /etc/rc.local
 sudo reboot
