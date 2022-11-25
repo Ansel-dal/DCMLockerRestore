@@ -58,9 +58,9 @@ sudo systemctl start dcmlocker.service
 
 ############ inicio en chromium ############
 #creo archivo que da el arranque
-sudo touch display.desktop
+sudo touch /etc/xdg/autostart/display.desktop
 #doy permisos para modificar desde el script
-sudo chmod ugo+rwx display.desktop
+sudo chmod ugo+rwx /etc/xdg/autostart/display.desktop
 #modifico archivo y agrego instrucciones
 echo "[Desktop Entry]
 Name=KioskMode #name
