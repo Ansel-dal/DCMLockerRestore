@@ -7,18 +7,14 @@ sudo apt install rpi-eeprom rpi-eeprom-images -y
 
 #configuraciones de red
 echo -e "
-
-
 interface eth0
 metric 303
 static ip_address=192.168.2.3
 static routers=192.168.2.1
 static domain_name_servers=192.168.2.1
 
-
 interface wlan0
 metric 200
-
 " >> /etc/dhcpcd.conf
 
 #instalar net 5
@@ -34,7 +30,11 @@ sudo git clone https://github.com/Ansel-dal/DCMLocker
 #doy permisos para crear dcmlocker.service 
 sudo chmod ugo+rwx /etc/systemd/system/
 
-#creo dcmlocker.service 
+############ creo dcmlocker.service  ############
+#creo archivo que da el arranque
+sudo touch /etc/systemd/system/dcmlocker.service
+#doy permisos para modificar desde el script
+sudo chmod ugo+rwx /etc/systemd/system/dcmlocker.service
 echo -e "[Unit]
 Description=dcmlocker 
 [Service]
@@ -47,7 +47,7 @@ Description=dcmlocker
 [Install]
  WantedBy=multi-user.target
 
-" >> /etc/systemd/system/dcmlocker.service
+" > /etc/systemd/system/dcmlocker.service
 
 #creo servicio
 sudo systemctl enable dcmlocker.service
