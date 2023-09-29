@@ -14,6 +14,10 @@ interface wlan0
 metric 200
 " >> /etc/dhcpcd.conf
 
+#Instalar repositorio de la aplicación
+
+sudo git clone https://github.com/DCMSolutions/DCMLockerv4 /home/pi/DCMLockerv4
+
 #instalar net 5
 sudo wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet5pi/master/install.sh | sudo bash
 
