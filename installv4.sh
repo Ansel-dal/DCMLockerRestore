@@ -25,8 +25,8 @@ sudo chmod ugo+rwx /etc/systemd/system/dcmlocker.service
 echo -e "[Unit]
 Description=dcmlocker 
 [Service]
- WorkingDirectory=/home/pi/DCMLocker
- ExecStart=/opt/dotnet/dotnet /home/pi/DCMLocker/DCMLocker.Server.dll
+ WorkingDirectory=/home/pi/DCMLockerv4
+ ExecStart=/opt/dotnet/dotnet /home/pi/DCMLockerv4/DCMLocker.Server.dll
  Restart=always   
  SyslogIdentifier=dotnet-dcmlocker    
  User=root
